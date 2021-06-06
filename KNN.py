@@ -29,7 +29,7 @@ testLabels=[]
 
 while True:
   try:
-    k = int(input('Escoge el valor de k (que sea impar): ')
+    k = int(input('Escoge el valor de k (que sea impar): '))
     break #siempre debe ser un numero imprar para que funcione 
   except ValueError:
     print('No es un numero')
