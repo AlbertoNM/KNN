@@ -2,6 +2,7 @@ import math
 import codecs
 from operator import itemgetter
 from statistics import mode
+
 # Definimos la función de distancia euclidiana 
 def distancia(lista1,lista2):
     sumatoria=0
@@ -19,9 +20,16 @@ def clasificacion(testlist,traininglist,traininglabel,K):
         for x in distancias[:K]:
             votelabels.append(x[1])
         return mode(votelabels)
+
 #Se crean las listas a llenar 
 training = []
 test = []
 trainingLabels=[]
 testLabels=[]
-k=5 #siempre debe ser un numero imprar para que funcione 
+
+while True:
+  try:
+    k = int(input('Escoge el valor de k (que sea impar): ')
+    break #siempre debe ser un numero imprar para que funcione 
+  except ValueError:
+    print('No es un numero')
