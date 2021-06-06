@@ -33,3 +33,31 @@ while True:
     break #siempre debe ser un numero imprar para que funcione 
   except ValueError:
     print('No es un numero')
+
+#Cargar las bases de datos 
+print("Cargando archivo de entrenamiento")
+with codecs.open("training.txt","r","UTF-8") as file:
+    for line in file:
+        elements=(line.rstrip('\n')).split(",")
+        training.append([float(elements[0]),float(elements[1]),float(elements[2]), float(elements[3]),float(elements[4]), float(elements[5]), float(elements[6]), float(elements[7]), float(elements[8]), float(elements[9]), float(elements[10]), float(elements[11]),float(elements[12])])
+        trainingLabels.append(elements[13])
+
+print("Cargando archivo de prueba")
+with codecs.open("test.txt","r","UTF-8") as file:
+    for line in file:
+        elements=(line.rstrip('\n')).split(",")
+        test.append([float(elements[0]),float(elements[1]),float(elements[2]), float(elements[3]),float(elements[4]), float(elements[5]), float(elements[6]), float(elements[7]), float(elements[8]), float(elements[9]), float(elements[10]), float(elements[11]),float(elements[12])])
+        testLabels.append(elements[13])
+
+print("Usando el sistema KNN en las muestras")
+prediccionescorrectas = []
+prediccionestotales = []
+for x,y in zip(test, testLabels):
+    prediccionestotales=+1
+    prediccion = clasificacion(x,training,trainingLabels,k)
+    if prediccion == y:
+        prediccionescorrectas=+1
+    print("Predicción: " + str(prediccion) + " etiqueta real: " + str(y))
+   
+   #Calculates model accuracy   
+print("Model accuracy: "+str((prediccionescorrectas/prediccionestotales)*100)+"%")
