@@ -19,3 +19,9 @@ def clasificacion(testlist,traininglist,traininglabel,K):
         for x in distancias[:K]:
             votelabels.append(x[1])
         return mode(votelabels)
+#Se crean las listas a llenar 
+training = []
+test = []
+trainingLabels=[]
+testLabels=[]
+k=5 #siempre debe ser un numero imprar para que funcione 
