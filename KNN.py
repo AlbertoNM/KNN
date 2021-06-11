@@ -31,13 +31,13 @@ def get_k():
     while True:
         try:
             k = int(input('Escoge el valor de k (que sea impar): '))
-            break #siempre debe ser un numero impar para que funcione 
+            return k
         except ValueError:
-            print('No es un numero')
-    return k
+            print('Dato no valido')
 
 #Cargar las bases de datos 
 def load_data_base():
+    k = get_k()
     print("Cargando archivo de entrenamiento")
     with codecs.open("training.txt","r","UTF-8") as file:
         for line in file:
@@ -57,7 +57,7 @@ def load_data_base():
     prediccionestotales = []
     for x,y in zip(test, testLabels):
         prediccionestotales=+1
-        prediccion = clasificacion(x,training,trainingLabels,get_k())
+        prediccion = clasificacion(x,training,trainingLabels,k)
         if prediccion == y:
             prediccionescorrectas=+1
         print("Predicción: " + str(prediccion) + " etiqueta real: " + str(y))
@@ -66,7 +66,6 @@ def load_data_base():
     print("Model accuracy: "+ str((prediccionescorrectas/prediccionestotales)*100) + "%")
 
 def run():
-    get_k()
     load_data_base()
 
 if __name__ == '__main__':
