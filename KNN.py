@@ -64,3 +64,10 @@ def load_data_base():
     
     #Calculates model accuracy   
     print("Model accuracy: "+ str((prediccionescorrectas/prediccionestotales)*100) + "%")
+
+def run():
+    get_k()
+    load_data_base()
+
+if __name__ == '__main__':
+    run()
