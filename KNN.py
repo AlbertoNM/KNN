@@ -31,7 +31,10 @@ def get_k():
     while True:
         try:
             k = int(input('Escoge el valor de k (que sea impar): '))
-            return k
+            if k%2 != 0:
+                return k
+            elif k%2 == 0:
+                print('El numero dado es par, porfavor ingrese un dato impar')
         except ValueError:
             print('Dato no valido')
 
