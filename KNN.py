@@ -34,13 +34,21 @@ def get_k():
             if k%2 != 0:
                 return k
             elif k%2 == 0:
-                print('El numero dado es par, porfavor ingrese un dato impar')
+                while True:
+                    result = input('El numero dado es par, desea continuar? (s/n): ')
+                    result = result.lower()
+                    result = result.strip()
+                    if result == 's':
+                        return k
+                    elif result == 'n':
+                        break
+                    else:
+                        print('Escribe "s" o "n"')
         except ValueError:
             print('Dato no valido')
 
 #Cargar las bases de datos 
-def load_data_base():
-    k = get_k()
+def load_data_base(k):
     print("Cargando archivo de entrenamiento")
     with codecs.open("training.txt","r","UTF-8") as file:
         for line in file:
@@ -56,20 +64,20 @@ def load_data_base():
             testLabels.append(elements[13])
 
     print("Usando el sistema KNN en las muestras")
-    prediccionescorrectas = []
-    prediccionestotales = []
+    prediccionescorrectas = 0
+    prediccionestotales = 0
     for x,y in zip(test, testLabels):
-        prediccionestotales=+1
+        prediccionestotales += 1
         prediccion = clasificacion(x,training,trainingLabels,k)
         if prediccion == y:
-            prediccionescorrectas=+1
-        print("Predicción: " + str(prediccion) + " etiqueta real: " + str(y))
+            prediccionescorrectas += 1
+        print(f'Prediction: {prediccion} etiqueta real: {y}')
     
-    #Calculates model accuracy   
-    print("Model accuracy: "+ str((prediccionescorrectas/prediccionestotales)*100) + "%")
+     #Calculates model accuracy   
+    print(f'Model accuracy: {round((prediccionescorrectas/prediccionestotales)*100,4)}%')
 
 def run():
-    load_data_base()
+    load_data_base(get_k())
 
 if __name__ == '__main__':
     run()
